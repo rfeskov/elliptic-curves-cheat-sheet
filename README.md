@@ -1,6 +1,6 @@
 # Elliptic Curves Cheat Sheet
 
-A concise web reference for elliptic curve arithmetic over finite fields. Includes modular arithmetic rules, formulas for point addition and doubling, scalar multiplication algorithms, Hasse's theorem, and interactive calculators for field operations and elliptic curve group operations.
+A concise web reference for elliptic curve arithmetic over finite fields.
 
 - Modular arithmetic rules (+, −, ×, ÷, exponentiation, modular inverses)
 - Step-by-step point addition and doubling on y² = x³ + ax + b (mod p)
