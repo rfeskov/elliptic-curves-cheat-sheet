@@ -1160,7 +1160,7 @@ function calcFastExp() {
     const sq=R*R, sqmod=mod(sq,p);
     if (bits[i]==='1') {
       const mul=sqmod*br, mulmod=mod(mul,p);
-      rows.push({bit:bits[i], op:'Square + Multiply', raw:`${R}<sup>2</sup>=${sq} mod ${p}=${sqmod}, ×${br}=${mul} mod ${p}`, res:mulmod});
+      rows.push({bit:bits[i], op:'Square + Multiply', raw:`${R}<sup>2</sup>=${sq} mod ${p}=${sqmod}, <br>${sqmod}×${br}=${mul} mod ${p}`, res:mulmod});
       R=mulmod;
     } else {
       rows.push({bit:bits[i], op:'Square only', raw:`${R}<sup>2</sup>=${sq} mod ${p}`, res:sqmod});
