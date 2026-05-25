@@ -1205,9 +1205,13 @@ function calcHasse() {
   ).join('');
 
   // number line
-  const pct_low=((lower/(upper+5))*100).toFixed(1);
-  const pct_cen=((center/(upper+5))*100).toFixed(1);
-  const pct_hig=((upper/(upper+5))*100).toFixed(1);
+  const padding=Math.max(5, Math.round((upper - lower) * 0.12));
+  const scaleMin=lower - padding;
+  const scaleMax=upper + padding;
+  const scaleSpan=Math.max(1, scaleMax - scaleMin);
+  const pct_low=(((lower - scaleMin) / scaleSpan) * 100).toFixed(1);
+  const pct_cen=(((center - scaleMin) / scaleSpan) * 100).toFixed(1);
+  const pct_hig=(((upper - scaleMin) / scaleSpan) * 100).toFixed(1);
   html+=`
   <div style="position:relative;height:52px;margin:16px 4px 4px">
     <div style="position:absolute;top:22px;left:0;right:0;height:3px;background:var(--border2);border-radius:2px"></div>
