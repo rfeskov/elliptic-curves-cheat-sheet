@@ -134,14 +134,14 @@
 
   /* ── NAV ── */
   :root {
-    --nav-height: 3.5rem; /* Desktop */
+    --nav-height: 0rem; /* Desktop */
   }
   /* Tablet / small laptop */
-  @media (max-width: 768px) {
-    :root { --nav-height: 5.5rem; }
+  @media (max-width: 854px) {
+    :root { --nav-height: 2rem; }
   }
   /* Phone (collapsed menu height) */
-  @media (max-width: 480px) {
+  @media (max-width: 497px) {
     :root { --nav-height: 0rem; }
   }
   nav {
@@ -194,7 +194,7 @@
     gap: 6px;
     flex-wrap: wrap;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 497px) {
     nav { padding: .4rem 0; }
     .nav-toggle { display: inline-flex; }
     .nav-inner {
@@ -467,11 +467,11 @@
   </button>
   <div class="nav-inner" id="nav-links">
     <a href="#modular">Modular Rules</a>
-    <a href="#addition">Point Addition</a>
-    <a href="#doubling">Point Doubling</a>
+    <a href="#addition">P + Q</a>
+    <a href="#doubling">2P</a>
     <a href="#lambda-calc">λ Calculator</a>
-    <a href="#scalar">Scalar Multiplication</a>
-    <a href="#fastexp">Fast Exponentiation</a>
+    <a href="#scalar">Double-and-Add</a>
+    <a href="#fastexp">Square-and-Multiply</a>
     <a href="#hasse">Hasse's Theorem</a>
   </div>
 </nav>
