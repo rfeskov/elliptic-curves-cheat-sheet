@@ -132,7 +132,15 @@
 
   /* ── NAV ── */
   :root {
-  --nav-height: 3.5rem; /* Update once, affects both nav & scroll */
+    --nav-height: 3.5rem; /* Desktop */
+  }
+  /* Tablet / small laptop */
+  @media (max-width: 768px) {
+    :root { --nav-height: 5.5rem; }
+  }
+  /* Phone */
+  @media (max-width: 480px) {
+    :root { --nav-height: 7rem; }
   }
   nav {
     position: sticky;
