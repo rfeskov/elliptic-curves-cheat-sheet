@@ -548,8 +548,8 @@
   <div class="card">
     <div class="card-label">Interactive — Modular Arithmetic Calculator</div>
     <div class="calc-grid">
-      <div class="input-group"><label>a</label><input id="ma-a" type="number" value="6435256"></div>
-      <div class="input-group"><label>b</label><input id="ma-b" type="number" value="9871234"></div>
+      <div class="input-group"><label>a</label><input id="ma-a" type="number" value="46"></div>
+      <div class="input-group"><label>b</label><input id="ma-b" type="number" value="75"></div>
       <div class="input-group"><label>p (modulus)</label><input id="ma-p" type="number" value="17"></div>
       <div class="input-group"><label>operation</label>
         <select id="ma-op">
@@ -1024,7 +1024,7 @@ function calcModArith() {
       const sq=mod(R*R,p);
       if (bits[i]==='1') {
         const mul=mod(sq*ar,p);
-        stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq},  ×base: ${sq}×${ar}=${sq*ar} mod ${p}=${mul}`});
+        stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq},  Multiply by base: ${sq}×${ar}=${sq*ar} mod ${p}=${mul}`});
         R=mul;
       } else {
         stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square only: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq}`});
@@ -1160,7 +1160,7 @@ function calcFastExp() {
     const sq=R*R, sqmod=mod(sq,p);
     if (bits[i]==='1') {
       const mul=sqmod*br, mulmod=mod(mul,p);
-      rows.push({bit:bits[i], op:'Square, then × b', raw:`${R}<sup>2</sup>=${sq} mod ${p}=${sqmod}, ×${br}=${mul} mod ${p}`, res:mulmod});
+      rows.push({bit:bits[i], op:'Square + Multiply', raw:`${R}<sup>2</sup>=${sq} mod ${p}=${sqmod}, ×${br}=${mul} mod ${p}`, res:mulmod});
       R=mulmod;
     } else {
       rows.push({bit:bits[i], op:'Square only', raw:`${R}<sup>2</sup>=${sq} mod ${p}`, res:sqmod});
