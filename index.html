@@ -1024,7 +1024,7 @@ function calcModArith() {
       const sq=mod(R*R,p);
       if (bits[i]==='1') {
         const mul=mod(sq*ar,p);
-        stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq},  Multiply by base: ${sq}×${ar}=${sq*ar} mod ${p}=${mul}`});
+        stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq},  <br>Multiply by base: ${sq}×${ar}=${sq*ar} mod ${p}=${mul}`});
         R=mul;
       } else {
         stepList.push({label:`bit ${i}=${bits[i]}`, val:`Square only: ${R}<sup>2</sup>=${R*R} mod ${p}=${sq}`});
