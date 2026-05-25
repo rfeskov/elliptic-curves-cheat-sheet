@@ -82,6 +82,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    transition: border-color .25s;
   }
   header::before {
     content: '';
@@ -139,9 +140,9 @@
   @media (max-width: 768px) {
     :root { --nav-height: 5.5rem; }
   }
-  /* Phone */
+  /* Phone (collapsed menu height) */
   @media (max-width: 480px) {
-    :root { --nav-height: 7rem; }
+    :root { --nav-height: 3.25rem; }
   }
   nav {
     position: sticky;
@@ -151,8 +152,40 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: .75rem 0;
-    transition: background .25s;
+    transition: background .25s, border-color .25s;
   }
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin: 0 2rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--text2);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all .2s;
+  }
+  .nav-toggle:hover { color: var(--gold); border-color: var(--gold); }
+  .nav-toggle .burger {
+    width: 18px; height: 14px; position: relative; display: inline-block;
+  }
+  .nav-toggle .burger span {
+    position: absolute; left: 0; right: 0; height: 2px;
+    background: currentColor; border-radius: 2px;
+    transition: transform .2s, top .2s, opacity .2s;
+  }
+  .nav-toggle .burger span:nth-child(1){ top: 0; }
+  .nav-toggle .burger span:nth-child(2){ top: 6px; }
+  .nav-toggle .burger span:nth-child(3){ top: 12px; }
+  nav.open .nav-toggle .burger span:nth-child(1){ top: 6px; transform: rotate(45deg); }
+  nav.open .nav-toggle .burger span:nth-child(2){ opacity: 0; }
+  nav.open .nav-toggle .burger span:nth-child(3){ top: 6px; transform: rotate(-45deg); }
   .nav-inner {
     max-width: 960px;
     margin: 0 auto;
@@ -160,6 +193,26 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+  }
+  @media (max-width: 480px) {
+    nav { padding: .4rem 0; }
+    .nav-toggle { display: inline-flex; }
+    .nav-inner {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding: .75rem 1.25rem 1rem;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    nav.open .nav-inner { display: flex; }
+    nav a { width: fit-content; }
   }
   nav a {
     font-family: 'DM Mono', monospace;
@@ -188,6 +241,7 @@
     margin-bottom: 1.75rem;
     padding-bottom: .75rem;
     border-bottom: 1px solid var(--border);
+    transition: border-color .25s;
   }
   .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: .1em; }
   .section-header h2 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: -.01em; }
@@ -224,7 +278,7 @@
     color: var(--text);
     margin: .75rem 0;
     overflow-x: auto;
-    transition: background .25s;
+    transition: background .25s, border-color .25s;
   }
   .formula .comment { color: var(--text3); font-style: italic; }
   .formula sup, .formula sub { font-size: .72em; line-height: 0; position: relative; vertical-align: baseline; }
@@ -241,6 +295,7 @@
     border-radius: 10px;
     padding: 1.1rem 1.25rem;
     box-shadow: var(--shadow);
+    transition: background .25s, border-color .25s;
   }
   .formula-card h4 {
     font-family: 'DM Mono', monospace;
@@ -292,8 +347,9 @@
     font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em;
     text-transform: uppercase; color: var(--text3); padding: .6rem .9rem;
     text-align: left; border-bottom: 1px solid var(--border);
+    transition: border-color .25s;
   }
-  .rule-table td { padding: .6rem .9rem; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+  .rule-table td { padding: .6rem .9rem; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; transition: border-color .25s; }
   .rule-table td:first-child { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gold); }
   .rule-table tr:last-child td { border-bottom: none; }
   .rule-table tr:hover td { background: var(--bg3); }
@@ -385,6 +441,7 @@
     text-align: center; padding: 2rem;
     font-family: 'DM Mono', monospace; font-size: 11px;
     color: var(--text3); border-top: 1px solid var(--border);
+    transition: border-color .25s;
   }
 </style>
 </head>
@@ -400,8 +457,14 @@
   <p>All formulas, rules, and interactive calculators for point addition, scalar multiplication, and modular arithmetic over finite fields.</p>
 </header>
 
-<nav>
-  <div class="nav-inner">
+<nav id="top-nav">
+  <button class="nav-toggle" onclick="toggleNav()" aria-expanded="false" aria-controls="nav-links">
+    <span class="burger" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+    Menu
+  </button>
+  <div class="nav-inner" id="nav-links">
     <a href="#modular">Modular Rules</a>
     <a href="#addition">Point Addition</a>
     <a href="#doubling">Point Doubling</a>
@@ -832,6 +895,13 @@ function toggleTheme() {
   html.setAttribute('data-theme', dark ? 'light' : 'dark');
   document.getElementById('theme-icon').textContent  = dark ? '☀︎' : '☾';
   document.getElementById('theme-label').textContent = dark ? 'Light' : 'Dark';
+}
+
+function toggleNav() {
+  const nav = document.getElementById('top-nav');
+  const btn = nav.querySelector('.nav-toggle');
+  const isOpen = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 
 // ─── Utilities ───────────────────────────────────────────────
